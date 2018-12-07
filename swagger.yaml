@@ -4,7 +4,7 @@ info:
   version: "1.0.0"
   title: "CSC Api Rest"
 host: "192.168.20.7"
-basePath: "/v1"
+basePath: ""
 schemes:
 - "http"
 paths:
@@ -31,5 +31,5 @@ definitions:
   WebsocketAddress:
     type: "object"
     properties:
-      addr:
+      uri:
         type: "string"
