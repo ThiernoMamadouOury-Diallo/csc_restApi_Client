@@ -1,0 +1,35 @@
+swagger: "2.0"
+info:
+  description: "Api Rest for CSC"
+  version: "1.0.0"
+  title: "CSC Api Rest"
+host: "192.168.20.7"
+basePath: "/v1"
+schemes:
+- "http"
+paths:
+  /ws/{id}:
+    get:
+      summary: "Request the IP address of a websocket"
+      description: ""
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of the client"
+        required: true
+        type: "integer"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "websocket found"
+          schema:
+            $ref: "#/definitions/WebsocketAddress"
+        404:
+          description: "websocket not created or found"
+definitions:
+  WebsocketAddress:
+    type: "object"
+    properties:
+      addr:
+        type: "string"
