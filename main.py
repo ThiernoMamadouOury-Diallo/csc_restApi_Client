@@ -4,7 +4,7 @@ import requests
 
 class WebsocketRequest(Resource):
     def get(self, id):
-        response = requests.get("http://localhost:8888/ws/" + str(id))
+        response = requests.get("http://localhost:5001/ws/" + str(id))
         if response.status_code == 200:
             return response.json()
         else:
@@ -13,4 +13,4 @@ class WebsocketRequest(Resource):
 app = Flask(__name__)
 api = Api(app)
 api.add_resource(WebsocketRequest, "/ws/<int:id>")
-app.run(host='0.0.0.0')
+app.run(host='0.0.0.0', port='5000')
