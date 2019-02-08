@@ -43,9 +43,8 @@ paths:
             $ref: "#/definitions/BillsNotification"
         404:
           description: Bad request
+          schema:
             $ref: '#/definitions/WebsocketAddress'
-        '404':
-          description: websocket not created or found
 
   '/ws/connect/{pseudo}/{password}':
     get:
