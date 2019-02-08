@@ -29,7 +29,7 @@ node {
        sh "docker build -t restapiclient:${env.VERSION} ."
    }
    stage('Push Image') {
-       sh "docker tag restapiclient:${env.VERSION} docker-registry.com/restapimap:${env.VERSION}"
+       sh "docker tag restapiclient:${env.VERSION} docker-registry.com/restapiclient:${env.VERSION}"
        sh "docker push docker-registry.com/restapiclient:${env.VERSION}"
    }
    stage('Deployment'){
