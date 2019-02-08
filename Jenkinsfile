@@ -26,7 +26,7 @@ node {
    stage('Build') {
        sh "envsubst < deployment/deployment.yaml > deployment/deployment.yaml.new"
        sh "mv deployment/deployment.yaml.new deployment/deployment.yaml"
-       sh "docker build -t restapimap:${env.VERSION} ."
+       sh "docker build -t restapiclient:${env.VERSION} ."
    }
    stage('Push Image') {
        sh "docker tag restapiclient:${env.VERSION} docker-registry.com/restapimap:${env.VERSION}"
