@@ -35,7 +35,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-        name: restapimap-service
+        name: restapiclient-service
         labels:
                 app: restapiclient
 spec:
