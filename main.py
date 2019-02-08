@@ -1,16 +1,15 @@
 import unittest
 
-import requests
 from flask import Flask, jsonify
 from flask_restful import Api, Resource
 
 
 class WebsocketRequest(Resource):
     def get(self, id):
-        response = requests.get("http://localhost:5001/ws/" + str(id))
-        if response.status_code == 200:
-            return response.json()
-        else:
+        #response = requests.get("http://localhost:5001/ws/" + str(id))
+        #if response.status_code == 200:
+         #   return response.json()
+        #else:
             return "websocket not created or found"
 
 
