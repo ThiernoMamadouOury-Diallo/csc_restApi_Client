@@ -18,8 +18,8 @@ class NotificationFacture(Resource):
         # retrieve from dfs
         urls = []
 
-        response = {"id": id, "bills": [{"id": "test", "date": "test", "uri": "http://maven.apache.org/archives/maven-1.x/maven.pdf"}, {"id": "", "date": "", "uri": ""}]}
-        return json.dumps(response)
+        response = {"id": id, "bills": [{"id": "test", "date": "test", "uri": "http://maven.apache.org/archives/maven-1.x/maven.pdf"}, {"id": "", "date": "", "uri": "https://www.cfasup2000.fr/media/20190123115038_jpo_2019-bd.pdf"}]}
+        return jsonify(response)
 
 class NotificationFactureTest(unittest.TestCase):
     def test_bills(self):
