@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: restapiclient-deploy
+        labels:
+                app: restapiclient
+spec:
+        replicas: 1
+        selector:
+                matchLabels:
+                        app: restapiclient
+        template:
+                metadata:
+                        labels:
+                                app: restapiclient
+                spec:
+                        containers:
+                                - name: restapiclient
+                                  image: docker-registry.com/restapiclient:${VERSION}
+                                  ports:
+                                        - containerPort: 500
+                                          name: flask
+                        affinity:
+                                podAntiAffinity:
+                                        requiredDuringSchedulingIgnoredDuringExecution:
+                                                - labelSelector:
+                                                          matchExpressions:
+                                                                  - key: app
+                                                                    operator: In
+                                                                    values:
+                                                                            - restapiclient
+                                                  topologyKey: "kubernetes.io/hostname"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+        name: restapimap-service
+        labels:
+                app: restapiclient
+spec:
+        ports:
+                - port: 8000
+                  targetPort: 8000
+                  name: flask
+                  protocol: TCP
+        selector:
+                app: restapiclient
