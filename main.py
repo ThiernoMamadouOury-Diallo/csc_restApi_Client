@@ -1,9 +1,9 @@
-import json
 import unittest
 
-from flask import Flask, jsonify, request
-from flask_restful import Api, Resource, reqparse
 import requests
+from flask import Flask, jsonify
+from flask_restful import Api, Resource
+
 
 class WebsocketRequest(Resource):
     def get(self, id):
@@ -14,11 +14,11 @@ class WebsocketRequest(Resource):
             return "websocket not created or found"
 
 class NotificationFacture(Resource):
-    def get(self, id):
+    def get(self, userId):
         # retrieve from dfs
         urls = []
 
-        response = {"id": id, "bills": [{"id": "test", "date": "test", "uri": "http://maven.apache.org/archives/maven-1.x/maven.pdf"}, {"id": "", "date": "", "uri": "https://www.cfasup2000.fr/media/20190123115038_jpo_2019-bd.pdf"}]}
+        response = {"userId": userId, "bills": [{"billId": "test", "date": "test", "uri": "http://maven.apache.org/archives/maven-1.x/maven.pdf"}, {"billId": "", "date": "", "uri": "https://www.cfasup2000.fr/media/20190123115038_jpo_2019-bd.pdf"}]}
         return jsonify(response)
 
 class NotificationFactureTest(unittest.TestCase):
@@ -29,6 +29,6 @@ class NotificationFactureTest(unittest.TestCase):
 
 app = Flask(__name__)
 api = Api(app)
-api.add_resource(NotificationFacture, "/bills/<int:id>")
+api.add_resource(NotificationFacture, "/bills/<int:userId>")
 api.add_resource(WebsocketRequest, "/ws/<int:id>")
 app.run(host='0.0.0.0', port='5000')
