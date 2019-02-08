@@ -13,13 +13,17 @@ class WebsocketRequest(Resource):
         else:
             return "websocket not created or found"
 
+
 class NotificationFacture(Resource):
     def get(self, userId):
         # retrieve from dfs
         urls = []
 
-        response = {"userId": userId, "bills": [{"billId": "test", "date": "test", "uri": "http://maven.apache.org/archives/maven-1.x/maven.pdf"}, {"billId": "", "date": "", "uri": "https://www.cfasup2000.fr/media/20190123115038_jpo_2019-bd.pdf"}]}
+        response = {"userId": userId, "bills": [
+            {"billId": "test", "date": "test", "uri": "http://maven.apache.org/archives/maven-1.x/maven.pdf"},
+            {"billId": "", "date": "", "uri": "https://www.cfasup2000.fr/media/20190123115038_jpo_2019-bd.pdf"}]}
         return jsonify(response)
+
 
 class NotificationFactureTest(unittest.TestCase):
     def test_bills(self):
