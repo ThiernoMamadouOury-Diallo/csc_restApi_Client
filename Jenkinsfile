@@ -9,10 +9,12 @@ node {
        script{
            env.VERSION = readFile 'version.txt'
            env.KUBE_IP = sh(script: 'eval echo "\\${KUBE_${ENV}}"', returnStdout: true).trim()
+           env.PSQL_IP = sh(script: 'eval echo "\\${PSQL_${ENV}}"', returnStdout: true).trim()
        }
    }
    environment{
        KUBE_IP = ${env.KUBE_IP}
+       PSQL_IP = ${env.PSQL_IP}
        VERSION = ${env.VERSION}
    }
    stage('Replacing environment variable'){
@@ -36,6 +38,7 @@ node {
        sh 'ssh tas@${KUBE_IP} rm -rf /opt/workspace/restapiclient'
        sh 'ssh tas@${KUBE_IP} mkdir -p /opt/workspace'
        sh 'scp -r deployment tas@${KUBE_IP}:/opt/workspace/restapiclient'
+       sh 'ssh tas@${KUBE_IP} "kubectl delete deployment restapiclient-deploy"'
        sh 'ssh tas@${KUBE_IP} "kubectl apply -f /opt/workspace/restapiclient/deployment.yaml"'
    }
 }
