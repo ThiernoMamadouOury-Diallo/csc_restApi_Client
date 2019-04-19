@@ -27,6 +27,26 @@ paths:
             $ref: "#/definitions/WebsocketAddress"
         404:
           description: "websocket not created or found"
+  /login:
+    get:
+      summary: "Log the user"
+      description: ""
+      parameters:
+        - name: "login"
+          description: "Username of the client"
+          required: true
+          type: "string"
+        - name: "password"
+          description: "Username of the client"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "user found"
+          schema:
+            $ref: "#/definitions/User"
+        404:
+          description: "user not found"
   /bills/{clientId}:
     get:
       summary: retrieve all urls bill for connected client
@@ -72,8 +92,6 @@ paths:
             $ref: '#/definitions/WebsocketAddress'
         '404':
           description: websocket not created or found
-
-
 definitions:
   WebsocketAddress:
     type: object
@@ -96,3 +114,16 @@ definitions:
               type: string
             uri:
               type: string
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      birthdate:
+        type: string
+      reg_date:
+        type: string

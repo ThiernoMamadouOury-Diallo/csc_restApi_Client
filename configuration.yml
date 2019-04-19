@@ -1,5 +1,6 @@
 database:
-    ip: 192.168.20.7
-    dbname: test
-    user: postgres
+    url: ${PSQL_IP}
+    port: 5432
+    username: postgres
     password: jeancharles
+    name: csc_database
