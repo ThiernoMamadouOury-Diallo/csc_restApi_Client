@@ -18,8 +18,6 @@ node {
        VERSION = ${env.VERSION}
    }
    stage('Replacing environment variable'){
-       sh "echo '${PSQL_IP}'"
-       sh "echo '${env.PSQL_IP}'"
        sh "envsubst < deployment/deployment.yaml > deployment/deployment.yaml.new"
        sh "mv deployment/deployment.yaml.new deployment/deployment.yaml"
        sh "envsubst < configuration.yml > configuration.yml.new"
