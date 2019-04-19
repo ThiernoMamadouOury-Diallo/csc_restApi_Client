@@ -13,11 +13,13 @@ node {
        }
    }
    environment{
-       KUBE_IP = ${env.KUBE_IP}
        PSQL_IP = ${env.PSQL_IP}
+       KUBE_IP = ${env.KUBE_IP}
        VERSION = ${env.VERSION}
    }
    stage('Replacing environment variable'){
+       sh "echo '${PSQL_IP}'"
+       sh "echo '${env.PSQL_IP}'"
        sh "envsubst < deployment/deployment.yaml > deployment/deployment.yaml.new"
        sh "mv deployment/deployment.yaml.new deployment/deployment.yaml"
        sh "envsubst < configuration.yml > configuration.yml.new"
