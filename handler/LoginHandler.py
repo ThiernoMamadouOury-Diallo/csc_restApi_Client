@@ -14,5 +14,7 @@ class LoginHandler(Resource):
             return json.dumps({'error': True}), 400, {'ContentType': 'application/json'}
         else:
             user = LoggingService().getUser(data['login'], data['password'])
+            if user is None:
+                return json.dumps({'error': True}), 400, {'ContentType': 'application/json'}
             logging.info("New user connected : %s" % data['login'])
             return UserEncoder().encode(user), 200, {'ContentType': 'application/json'}
