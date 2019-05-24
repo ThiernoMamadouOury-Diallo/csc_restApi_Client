@@ -8,7 +8,7 @@ from model.User import UserEncoder
 from service.LoggingService import LoggingService
 
 class LoginHandler(Resource):
-    def get(self):
+    def post(self):
         data = request.json
         if data is None:
             return json.dumps({'error': True}), 400, {'ContentType': 'application/json'}
